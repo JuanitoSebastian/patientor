@@ -9,6 +9,10 @@ export type Action =
   | {
       type: "ADD_PATIENT";
       payload: Patient;
+    }
+  | {
+      type: 'SET_PATIENT_TO_DISPLAY';
+      payload: Patient | undefined;
     };
 
 export const reducer = (state: State, action: Action): State => {
@@ -32,7 +36,33 @@ export const reducer = (state: State, action: Action): State => {
           [action.payload.id]: action.payload
         }
       };
+    case 'SET_PATIENT_TO_DISPLAY':
+      return {
+        ...state,
+        patientToDisplay: action.payload
+      };
     default:
       return state;
   }
+};
+
+export const setPatientList = (patientsToSet: Patient[]): Action => {
+  return {
+    type: 'SET_PATIENT_LIST',
+    payload: patientsToSet
+  };
+};
+
+export const addPatient = (patientToAdd: Patient): Action => {
+  return {
+    type: 'ADD_PATIENT',
+    payload: patientToAdd
+  };
+};
+
+export const setPatientToDisplay = (patientToDisplay: Patient | undefined): Action => {
+  return {
+    type: 'SET_PATIENT_TO_DISPLAY',
+    payload: patientToDisplay
+  };
 };
