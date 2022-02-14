@@ -4,12 +4,13 @@ import { Patient, Gender } from '../types';
 import { useParams } from 'react-router-dom';
 import { useStateValue } from "../state";
 import { apiBaseUrl } from "../constants";
-import { Container, Header, Loader, Icon, Label, Dimmer } from 'semantic-ui-react';
+import { Container, Header, Loader, Icon, Label, Dimmer, List } from 'semantic-ui-react';
 import { setPatientToDisplay } from '../state';
-
+import EntryComponent from '../components/EntryComponents';
 
 const PatientPage = () => {
   const [{ patientToDisplay }, dispatch] = useStateValue();
+  const [{ diagnoses }, ] = useStateValue();
 
   const { id } = useParams<{ id: string }>();
 
@@ -30,14 +31,15 @@ const PatientPage = () => {
     }
   }, []);
 
+
   const GenderIconToDisplay = (): JSX.Element => {
     if (!patientToDisplay) { return (<></>); }
-    if (patientToDisplay.gender === Gender.Male) { return MaleIcon(); }
-    if (patientToDisplay.gender === Gender.Female ) { return FemaleIcon(); }
-    return OtherIcon();
+    if (patientToDisplay.gender === Gender.Male) { return (<Icon name='mars' />); }
+    if (patientToDisplay.gender === Gender.Female ) { return (<Icon name='venus' />); }
+    return (<Icon name='genderless' />);
   };
 
-  if (!patientToDisplay) {
+  if (!patientToDisplay || !diagnoses) {
     return (
       <div>
         <Container textAlign='center'>
@@ -56,22 +58,16 @@ const PatientPage = () => {
         <Header as='h2'>{patientToDisplay.name} <GenderIconToDisplay /></Header>
         <Label>{patientToDisplay.ssn}</Label>
         <Label>{patientToDisplay.occupation}</Label>
+        <List>
+          {patientToDisplay.entries.map(entry => 
+            <List.Item key={entry.id}>
+              <EntryComponent entry={entry} />
+            </List.Item>
+          )}
+        </List>
       </Container>
     </div>
   );
 };
-
-const MaleIcon = (): JSX.Element => (
-  <Icon name='mars' />
-);
-
-const FemaleIcon = (): JSX.Element => (
-  <Icon name='venus' />
-);
-
-const OtherIcon = () => (
-  <Icon name='genderless' />
-);
-
 
 export default PatientPage;
