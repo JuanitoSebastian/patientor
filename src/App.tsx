@@ -1,15 +1,15 @@
-import React from "react";
-import axios from "axios";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { Button, Divider, Header, Container } from "semantic-ui-react";
+import React from 'react';
+import axios from 'axios';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { Button, Divider, Header, Container } from 'semantic-ui-react';
 
-import { apiBaseUrl } from "./constants";
-import { setDiagnosesList, useStateValue } from "./state";
-import { Diagnosis, Patient } from "./types";
-import { setPatientList } from "./state";
+import { apiBaseUrl } from './constants';
+import { setDiagnosesList, useStateValue } from './state';
+import { Diagnosis, Patient } from './types';
+import { setPatientList } from './state';
 
-import PatientListPage from "./PatientListPage";
-import PatientPage from "./PatientPage";
+import PatientListPage from './PatientListPage';
+import PatientPage from './PatientPage';
 
 const App = () => {
   const [, dispatch] = useStateValue();

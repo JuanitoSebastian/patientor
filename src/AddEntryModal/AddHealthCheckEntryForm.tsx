@@ -1,10 +1,10 @@
-import React from "react";
-import { Grid, Button } from "semantic-ui-react";
-import { Field, Formik, Form } from "formik";
+import React from 'react';
+import { Grid, Button } from 'semantic-ui-react';
+import { Field, Formik, Form } from 'formik';
 
-import { DiagnosisSelection, NumberField, TextField } from "../AddPatientModal/FormField";
-import { useStateValue } from "../state";
-import { Diagnosis, HealthCheckEntry } from "../types";
+import { DiagnosisSelection, NumberField, TextField } from '../AddPatientModal/FormField';
+import { useStateValue } from '../state';
+import { Diagnosis, HealthCheckEntry } from '../types';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type HealthCheckEntryFormValues = Omit<HealthCheckEntry, 'id' | 'date'>;
@@ -29,7 +29,7 @@ export const AddHealthCheckEntryForm = ({ onSubmit, onCancel }: Props ) => {
       }}
       onSubmit={onSubmit}
       validate={values => {
-        const requiredError = "Field is required";
+        const requiredError = 'Field is required';
         const errors: { [field: string]: string } = {};
         if (!values.description) {
           errors.description = requiredError;

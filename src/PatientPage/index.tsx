@@ -1,9 +1,9 @@
 import React from 'react';
-import axios from "axios";
+import axios from 'axios';
 import { Patient, Gender } from '../types';
 import { useParams } from 'react-router-dom';
-import { updatePatient, useStateValue } from "../state";
-import { apiBaseUrl } from "../constants";
+import { updatePatient, useStateValue } from '../state';
+import { apiBaseUrl } from '../constants';
 import { Container, Header, Loader, Icon, Label, Dimmer, List, Button } from 'semantic-ui-react';
 import { setPatientToDisplay } from '../state';
 import EntryComponent from '../components/EntryComponents';
